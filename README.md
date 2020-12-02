@@ -1,0 +1,2 @@
+# KabukProgramlama
+Kabuk Programlama Notları
