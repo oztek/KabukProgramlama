@@ -7,10 +7,12 @@ Basitçe tanımlamak gerekirse komutları klavyeden alan işletim sistemiyle hab
 
 Pek çok Linux çekirdeği kullanan işletim sistemlerinde Steve Bourne tarafından yazılmış olan bash programı shell olarak kullanır. Bu program aslında Unix sistemindeki sh shell programının geliştirilmiş halidir.
 
+Script bir dosya içindeki sıralı komutlara denir.
+
 ## Test komutu
-
-    test expr
-
+```bash
+test expr
+```
 expr şart ifadesini değerlendirip 0 (Doğru) veya 1 Yanlış durumu döndürür. 
 
 Eğer [ biçimi kullanılacaksa son arguman ] olmalıdır.
@@ -19,36 +21,38 @@ Eğer [ biçimi kullanılacaksa son arguman ] olmalıdır.
 ## Kabuk Programları
 Kabuk programı aslında bir veya daha fazla komutu barındıran çalışabilir metin bazlı dosyalardır. Bir dosyanın çalışabilir yapılması için
 
-    $ chmod +x dosya_ismi
-
+```bash
+bash$ chmod +x dosya_ismi
+```
 Dosyayı çalıştırmak içinse
-
-    $ ./dosya_ismi
-
+```bash
+bash$ ./dosya_ismi
+```
 ### Yorum satırları
 Kabuk programlarına yorum eklenmek istenirse # kullanılır. İlgili satırda # simgeden sonra gelen komutlar yorum olarak değerlendirilir ve göz ardı edilirler.
 
 Pek çok kabuk programı olduğundan yazdığınız kabuk programını belirtmeniz gerebilir. Bunun için Shebang olarak ifade edilen #! karaterlerinden sonra kullanılacak kabuk programının yolu vermek gereklidir. 
-
-    which bash
-
+```bash
+which bash
+bash$ /bin/bash
+```
 komutu ile işletim sisteminide bash programının tam yolunu öğrenip Shebang i doğru şekilde yazabilirsiniz. Genellikle aşağıdaki 
-
-    #!/bin/bash
-
+```bash
+#!/bin/bash
+```
 yazarak bash kabuğunu kullandığımızı belirtebiliriz. Eğer unutulursa da belki programını çalışabilir. Herhangi bir hatayı en aza ingirdegemek için yazılması gereklidir.
 
 ## Değişkenler
 
 Belli bir değeri hafıza tutup ona bir isimle ulaşmak için değişkenler kullanırız.
-
-    degisken1=3; degisken2="Deneme" #aynı satırda iki komutu birbirinden ayırabilmek için ; kullanılır.
-
+```bash
+degisken1=3; degisken2="Deneme" #aynı satırda iki komutu birbirinden ayırabilmek için ; kullanılır.
+```
 Atama işlemi için kullanılan = operatörünü kullanırken boşluk kullanmamalısınız.
-
-    degisken3=degisken1 #Doğru kullanım
-    degsiken4 = degisken3 #Yanlış kullanım
-
+```bash
+degisken3=degisken1 # Doğru kullanım
+degsiken4 = degisken3 # Yanlış kullanım
+```
 Pek çok programlama dilinde olduğu gibi değişkenleri isimlendirirken aşağıdaki kurallara dikkat edilmelidir.
 
 - Değişken isimleri rakamla başlayamaz.
@@ -57,22 +61,33 @@ Pek çok programlama dilinde olduğu gibi değişkenleri isimlendirirken aşağ�
 Değişkenlere erişebilmek için $ işareti kullanılır.
 
 Bir değişkenin değeri ise echo komutu ile ekrana yazdırılır.
-
-    echo Yukarıda değişkenlere atanan değerler $degisken1 ve $degisken2 dir.
-    Yukarıda değişkenlere atanan değerler 3 ve Deneme dir.
+```bash
+bash$ echo Yukarıda değişkenlere atanan değerler $degisken1 ve $degisken2 dir.
+bash$ Yukarıda değişkenlere atanan değerler 3 ve Deneme dir.
+```
 
 ### Aritmetik işlemler
 
 Aritmetik işlemler için eval veya let komutu kullanılır.
+```bash
+bash$ let "carpim=2*7"
+bash$ echo $carpim
+bash$ 14
+```
+```bash
+bash$ typeset -i sonuc # sonuc isimli tam sayı değişkeni tanımlandı.
+bash$ a=100; b=56 # aynı satırda iki komutu birbirinden ayırabilmek için ; kullanılır.
+bash$ sonuc = a*b
+bash$ echo $sonuc
+```
+### $( ) ve <() Operatörleri
 
-    $let "carpim=2*7"
-    $echo $carpim
-    14
-
-    typeset -i sonuc #sonuc isimli tam sayı değişkeni tanımlandı.
-    a=100; b=56 #aynı satırda iki komutu birbirinden ayırabilmek için ; kullanılır.
-    sonuc = a*b
-    echo $sonuc
+Bir komutun çıktısını kullanmak için $( ) size yardımcı olacaktır.
+```bash
+bash$ echo "Bugün'ün tarihi $(date) dir."
+bash$ Bugün'ün tarihi Thu 03 Dec 2020 03:24:44 AM +03 dir.
+```
+Bir komutun çıktısını geçiçi bir dosya yazıp bunu girdi olarak bir programa verme için <( ) kullanılır.
 
 ### Mantıksal Operatörler
 
@@ -136,17 +151,17 @@ Aritmetik işlemler için eval veya let komutu kullanılır.
         *)
                 komutlar;;
     esac
-
-    echo -n "Bir ders ismi giriniz:"
-    read DERS
-    echo -n "$DERS isimli ders "
-    case $DERS in 
-        fizik | matematik | kimya) echo -n "dört";;
-        programlama | veritabanı) echo -n "beş";;
-        *) echo -n " bilmediğim ";;
-    esac
-    echo " ders saatindedir."
-
+```bash
+echo -n "Bir ders ismi giriniz:"
+read DERS
+echo -n "$DERS isimli ders "
+case $DERS in 
+    fizik | matematik | kimya) echo -n "dört";;
+    programlama | veritabanı) echo -n "beş";;
+    *) echo -n " bilmediğim ";;
+esac
+echo " ders saatindedir."
+```
 ### while-do Döngüsü
 
 ### for-do Döngüsü
