@@ -3,9 +3,9 @@
 
 ## Shell (Kabuk) nedir?
 
-Basitçe tanımlamak gerekirse komutları klavyeden alan işletim sistemiyle haberleşmemizi sağlayan bir programdır. Eskiden bilgisayarlar etkileşime girmek için şimdiki gibi grafik kullanıcı arayüzleri (graphical user interface GUI) olmayıp shell gibi komut satırı arayüzleri (command line interface CLI) kullanılıyordu. Hala pek çok işletim sisteminde en etkin şekilde kullanmak için kabukla etkileşmek gereklidir. Hatta bu verimi fark eden Microsoft firması da işletim sisteminde yakın zamanda PowerShell kabuğu geliştirmiştir.
+Basitçe tanımlamak gerekirse komutları klavyeden alan işletim sistemiyle haberleşmemizi sağlayan bir programdır. Eskiden bilgisayarlarla etkileşime girmek için şimdiki gibi grafik kullanıcı arayüzleri (graphical user interface GUI) olmadığından shell gibi komut satırı arayüzleri (command line interface CLI) kullanılıyordu. Hala pek çok işletim sistemini en etkin şekilde kullanmak için kabukla etkileşmek gereklidir. Hatta bu verimi fark eden Microsoft firması da işletim sisteminde yakın zamanda PowerShell kabuğunu geliştirmiştir.
 
-Pek çok Linux çekirdeği kullanan işletim sistemlerinde Steve Bourne tarafından yazılmış olan bash programını shell olarak kullanır. Bu program aslında Unix sistemindeki sh shell programının geliştirilmiş halidir.
+Pek çok Linux çekirdeği kullanan işletim sistemlerinde Steve Bourne tarafından yazılmış olan bash programı shell olarak kullanır. Bu program aslında Unix sistemindeki sh shell programının geliştirilmiş halidir.
 
 ## Test komutu
 
@@ -126,3 +126,27 @@ Aritmetik işlemler için eval veya let komutu kullanılır.
         komut 6
     fi
 
+### case 
+
+    case anahtar in 
+        secenek1)
+                komutlar;;
+        secenek2)
+                komutlar;;
+        *)
+                komutlar;;
+    esac
+
+    echo -n "Bir ders ismi giriniz:"
+    read DERS
+    echo -n "$DERS isimli ders "
+    case $DERS in 
+        fizik | matematik | kimya) echo -n "dört";;
+        programlama | veritabanı) echo -n "beş";;
+        *) echo -n " bilmediğim ";;
+    esac
+    echo " ders saatindedir."
+
+### while-do Döngüsü
+
+### for-do Döngüsü
