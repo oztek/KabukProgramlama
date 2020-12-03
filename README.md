@@ -1,7 +1,21 @@
 # İşletim Sistemleri Projesi
 # 21. Unixte kabuk programlama (shell scripting) dilinin temel örneklerle anlatımı
 
-## Shell nedir?
+## Shell (Kabuk) nedir?
+
+Basitçe tanımlamak gerekirse komutları klavyeden alan işletim sistemiyle haberleşmemizi sağlayan bir programdır. Eskiden bilgisayarlar etkileşime girmek için şimdiki gibi grafik kullanıcı arayüzleri (graphical user interface GUI) olmayıp shell gibi komut satırı arayüzleri (command line interface CLI) kullanılıyordu. Hala pek çok işletim sisteminde en etkin şekilde kullanmak için kabukla etkileşmek gereklidir. Hatta bu verimi fark eden Microsoft firması da işletim sisteminde yakın zamanda PowerShell kabuğu geliştirmiştir.
+
+Pek çok Linux çekirdeği kullanan işletim sistemlerinde Steve Bourne tarafından yazılmış olan bash programını shell olarak kullanır. Bu program aslında Unix sistemindeki sh shell programının geliştirilmiş halidir.
+
+## Test komutu
+
+    test expr
+
+expr şart ifadesini değerlendirip 0 (Doğru) veya 1 Yanlış durumu döndürür. 
+
+Eğer [ biçimi kullanılacaksa son arguman ] olmalıdır.
+
+
 ## Kabuk Programları
 Kabuk programı aslında bir veya daha fazla komutu barındıran çalışabilir metin bazlı dosyalardır. Bir dosyanın çalışabilir yapılması için
 
@@ -13,13 +27,28 @@ Dosyayı çalıştırmak içinse
 
 ### Yorum satırları
 Kabuk programlarına yorum eklenmek istenirse # kullanılır. İlgili satırda # simgeden sonra gelen komutlar yorum olarak değerlendirilir ve göz ardı edilirler.
-Pek çok kabuk programı olduğundan yazdığınız kabuk programını belirtmeniz gerebilir. Bunun için kabuk programının  en başına 
+
+Pek çok kabuk programı olduğundan yazdığınız kabuk programını belirtmeniz gerebilir. Bunun için Shebang olarak ifade edilen #! karaterlerinden sonra kullanılacak kabuk programının yolu vermek gereklidir. 
+
+    which bash
+
+komutu ile işletim sisteminide bash programının tam yolunu öğrenip Shebang i doğru şekilde yazabilirsiniz. Genellikle aşağıdaki 
 
     #!/bin/bash
 
-yazarak bash kabuğunu kullandığımızı belirtebiliriz.
+yazarak bash kabuğunu kullandığımızı belirtebiliriz. Eğer unutulursa da belki programını çalışabilir. Herhangi bir hatayı en aza ingirdegemek için yazılması gereklidir.
 
 ## Değişkenler
+
+Belli bir değeri hafıza tutup ona bir isimle ulaşmak için değişkenler kullanırız.
+
+    degisken1=3; degisken2="Deneme" #aynı satırda iki komutu birbirinden ayırabilmek için ; kullanılır.
+
+Atama işlemi için kullanılan = operatörünü kullanırken boşluk kullanmamalısınız.
+
+    degisken3=degisken1 #Doğru kullanım
+    degsiken4 = degisken3 #Yanlış kullanım
+
 Pek çok programlama dilinde olduğu gibi değişkenleri isimlendirirken aşağıdaki kurallara dikkat edilmelidir.
 
 - Değişken isimleri rakamla başlayamaz.
@@ -28,6 +57,9 @@ Pek çok programlama dilinde olduğu gibi değişkenleri isimlendirirken aşağ�
 Değişkenlere erişebilmek için $ işareti kullanılır.
 
 Bir değişkenin değeri ise echo komutu ile ekrana yazdırılır.
+
+    echo Yukarıda değişkenlere atanan değerler $degisken1 ve $degisken2 dir.
+    Yukarıda değişkenlere atanan değerler 3 ve Deneme dir.
 
 ### Aritmetik işlemler
 
