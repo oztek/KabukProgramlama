@@ -1,3 +1,22 @@
+- [İşletim Sistemleri Projesi](#i̇şletim-sistemleri-projesi)
+- [21. Unixte kabuk programlama (shell scripting) dilinin temel örneklerle anlatımı](#21-unixte-kabuk-programlama-shell-scripting-dilinin-temel-örneklerle-anlatımı)
+  - [Shell (Kabuk) nedir?](#shell-kabuk-nedir)
+  - [Test komutu](#test-komutu)
+  - [Kabuk Programları](#kabuk-programları)
+    - [Yorum satırları](#yorum-satırları)
+  - [Değişkenler](#değişkenler)
+    - [Aritmetik işlemler](#aritmetik-işlemler)
+    - [$( ) ve <() Operatörleri](#--ve--operatörleri)
+    - [Mantıksal Operatörler](#mantıksal-operatörler)
+      - [Aritmetik Karşılaştırma](#aritmetik-karşılaştırma)
+      - [Dizi (String) Karşılaştırma](#dizi-string-karşılaştırma)
+      - [Dosya Karşılaştırma](#dosya-karşılaştırma)
+  - [Akış kontrolü](#akış-kontrolü)
+    - [if-else-elif](#if-else-elif)
+    - [case](#case)
+    - [while-do Döngüsü](#while-do-döngüsü)
+    - [for-do Döngüsü](#for-do-döngüsü)
+  
 # İşletim Sistemleri Projesi
 # 21. Unixte kabuk programlama (shell scripting) dilinin temel örneklerle anlatımı
 
@@ -19,14 +38,14 @@ Eğer [ biçimi kullanılacaksa son arguman ] olmalıdır.
 
 
 ## Kabuk Programları
-Kabuk programı aslında bir veya daha fazla komutu barındıran çalışabilir metin bazlı dosyalardır. Bir dosyanın çalışabilir yapılması için
+Kabuk programı aslında bir veya daha fazla komutu barındıran çalışabilir metin bazlı dosyalardır. Herhangi bir zorunluluk olmamasına karşılık sh uzantılı olması adettendir. Bir dosyanın çalışabilir yapılması için
 
 ```bash
-bash$ chmod +x dosya_ismi
+$ chmod +x dosya_ismi
 ```
 Dosyayı çalıştırmak içinse
 ```bash
-bash$ ./dosya_ismi
+$ ./dosya_ismi
 ```
 ### Yorum satırları
 Kabuk programlarına yorum eklenmek istenirse # kullanılır. İlgili satırda # simgeden sonra gelen komutlar yorum olarak değerlendirilir ve göz ardı edilirler.
@@ -34,7 +53,7 @@ Kabuk programlarına yorum eklenmek istenirse # kullanılır. İlgili satırda #
 Pek çok kabuk programı olduğundan yazdığınız kabuk programını belirtmeniz gerebilir. Bunun için Shebang olarak ifade edilen #! karaterlerinden sonra kullanılacak kabuk programının yolu vermek gereklidir. 
 ```bash
 which bash
-bash$ /bin/bash
+$ /bin/bash
 ```
 komutu ile işletim sisteminide bash programının tam yolunu öğrenip Shebang i doğru şekilde yazabilirsiniz. Genellikle aşağıdaki 
 ```bash
@@ -58,34 +77,34 @@ Pek çok programlama dilinde olduğu gibi değişkenleri isimlendirirken aşağ�
 - Değişken isimleri rakamla başlayamaz.
 - Değişken ismi içerisinde _ dışında karakter bulunamaz.
   
-Değişkenlere erişebilmek için $ işareti kullanılır.
+Değişkenlere erişebilmek için **$** işareti kullanılır.
 
-Bir değişkenin değeri ise echo komutu ile ekrana yazdırılır.
+Bir değişkenin değeri ise **echo** veya **printf** komutu ile ekrana yazdırılır.
 ```bash
-bash$ echo Yukarıda değişkenlere atanan değerler $degisken1 ve $degisken2 dir.
-bash$ Yukarıda değişkenlere atanan değerler 3 ve Deneme dir.
+$ echo Yukarıda değişkenlere atanan değerler $degisken1 ve $degisken2 dir.
+Yukarıda değişkenlere atanan değerler 3 ve Deneme dir.
 ```
 
 ### Aritmetik işlemler
 
 Aritmetik işlemler için eval veya let komutu kullanılır.
 ```bash
-bash$ let "carpim=2*7"
-bash$ echo $carpim
-bash$ 14
+$ let "carpim=2*7"
+$ echo $carpim
+14
 ```
 ```bash
-bash$ typeset -i sonuc # sonuc isimli tam sayı değişkeni tanımlandı.
-bash$ a=100; b=56 # aynı satırda iki komutu birbirinden ayırabilmek için ; kullanılır.
-bash$ sonuc = a*b
-bash$ echo $sonuc
+$ typeset -i sonuc # sonuc isimli tam sayı değişkeni tanımlandı.
+$ a=100; b=56 # aynı satırda iki komutu birbirinden ayırabilmek için ; kullanılır.
+$ sonuc = a*b
+$ echo $sonuc
 ```
 ### $( ) ve <() Operatörleri
 
 Bir komutun çıktısını kullanmak için $( ) size yardımcı olacaktır.
 ```bash
-bash$ echo "Bugün'ün tarihi $(date) dir."
-bash$ Bugün'ün tarihi Thu 03 Dec 2020 03:24:44 AM +03 dir.
+$ echo "Bugün'ün tarihi $(date) dir."
+Bugün'ün tarihi Thu 03 Dec 2020 03:24:44 AM +03 dir.
 ```
 Bir komutun çıktısını geçiçi bir dosya yazıp bunu girdi olarak bir programa verme için <( ) kullanılır.
 
@@ -103,7 +122,7 @@ Bir komutun çıktısını geçiçi bir dosya yazıp bunu girdi olarak bir progr
  
 #### Dizi (String) Karşılaştırma
 |Operatör|Anlamı        |Örneği    |Açıklaması|
-|:------:|:-------------|:--------:|:--------:|
+|:------:|:-------------|:--------:|:--------|
 |-z      |boş dizi      | -z Metin | Metin dizisinin uzunluğu sıfır ise    |
 |-n      |tanımlı dizi  | -n Metin | Metin dizisinin uzunluğu sıfır değilse|
 |=       |eşit diziler  | Metin1 = Metin2 | Metin1 dizisi Metin2 dizisine eşitse   |
