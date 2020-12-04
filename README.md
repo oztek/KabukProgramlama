@@ -5,6 +5,9 @@
   - [Kabuk Programları](#kabuk-programları)
     - [Yorum satırları](#yorum-satırları)
   - [Değişkenler](#değişkenler)
+  - [Parametreler](#parametreler)
+    - [Argüman Parametresi](#argüman-parametresi)
+    - [Özel Karakter Parametresi](#özel-karakter-parametresi)
     - [Aritmetik işlemler](#aritmetik-işlemler)
     - [$( ) ve <() Operatörleri](#--ve--operatörleri)
     - [Mantıksal Operatörler](#mantıksal-operatörler)
@@ -15,7 +18,11 @@
     - [if-else-elif](#if-else-elif)
     - [case](#case)
     - [while-do Döngüsü](#while-do-döngüsü)
-    - [for-do Döngüsü](#for-do-döngüsü)
+    - [until-do Döngüsü](#until-do-döngüsü)
+  - [Fonksiyonlar](#fonksiyonlar)
+    - [Değişlenleri Geçerlilikleri](#değişlenleri-geçerlilikleri)
+    - [Geri Dönüş Değeri](#geri-dönüş-değeri)
+    - [Argüman Göndermek](#argüman-göndermek)
   - [Ekler](#ekler)
     - [date komutu](#date-komutu)
     - [declare komutu](#declare-komutu)
@@ -43,6 +50,7 @@ test expr
 expr şart ifadesini değerlendirip 0 (Doğru) veya 1 Yanlış durumu döndürür. 
 
 Eğer [ biçimi kullanılacaksa son arguman ] olmalıdır.
+
 
 
 ## Kabuk Programları
@@ -92,6 +100,26 @@ Bir değişkenin değeri ise **echo** veya **printf** komutu ile ekrana yazdır�
 $ echo Yukarıda değişkenlere atanan değerler $degisken1 ve $degisken2 dir.
 Yukarıda değişkenlere atanan değerler 3 ve Deneme dir.
 ```
+
+## Parametreler
+### Argüman Parametresi
+Komut satırındaki argümanlar numaralandırılırlar. İlk arguman $1 ikincisi $2 diye devam eder.
+
+merhaba.sh 
+```bash
+printf "Merhaba, %s\n" "$1"
+```
+Bu programı çalıştırdığımızda 
+
+```bash
+$ ./merhaba.sh Hakan
+Merhaba, Hakan
+$ ./merhaba.sh Ömer
+Merhaba, Ömer
+```
+
+### Özel Karakter Parametresi
+$* ve $@ tüm argümanları gösterirken, $$ programın proses ID sini (PID) ve $?  son çalışan programın çıkış değerini gösterir.
 
 ### Aritmetik işlemler
 
@@ -192,7 +220,77 @@ echo " ders saatindedir."
 ```
 ### while-do Döngüsü
 
+```bash
+while [ şart ]
+do
+    komutlar
+done
+```
+
+```bash
+sayi=1
+while [ $sayi -le 5 ]
+do
+    echo "$sayi. sayi"
+    let sayi=sayi+1
+done
+
 ### for-do Döngüsü
+
+```bash
+for deger in liste
+do
+    komutlar
+done
+```
+ve C diline benzer şekilde
+
+```bash
+#for (( altsınır; şart; artım ))
+for (( n=1; n<=5; ++n ))
+do
+    komutlar
+done
+```
+### until-do Döngüsü
+
+```bash
+until [ şart ]
+do
+    komutlar
+done
+```
+
+## Fonksiyonlar
+
+Fonksiyonlar, büyük bir programın alt parçaları olarak düşünülebilir.
+
+```bash
+fonksiyon_ismi(){
+    komutlar
+}
+```
+
+### Değişlenleri Geçerlilikleri
+
+```bash
+degisken1=1
+degisken2=2
+fonksiyon () {
+    local degisken1=5
+    degisken2=6
+    echo "Fonksiyon içindeki degisken1: $degisken1, degisken2: $degisken2"
+}
+
+echo "Fonksiyon çağrılmadan önceki degisken1: $degisken1, degisken2: $degisken2"
+
+fonksiyon
+echo "Fonksiyon çağrıldıktan sonraki degisken1: $degisken1, degisken2: $degisken2"
+```
+
+### Geri Dönüş Değeri
+
+### Argüman Göndermek
 
 ## Ekler
 
