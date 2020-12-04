@@ -1,11 +1,11 @@
-# İşletim Sistemleri Projesi
+# İşletim Sistemleri Projesi HAKAN ÖMER ÖZTEK 2190656006
 
 [Bu belgeye ve videoya ulaşabileceğiniz adres] (https://github.com/oztek/KabukProgramlama)
 
 
 ![Erişim Yolu](images/Yol.png) 
 
-- [İşletim Sistemleri Projesi](#i̇şletim-sistemleri-projesi)
+- [İşletim Sistemleri Projesi HAKAN ÖMER ÖZTEK 2190656006](#i̇şletim-sistemleri-projesi-hakan-ömer-öztek-2190656006)
 - [21. Unixte kabuk programlama (shell scripting) dilinin temel örneklerle anlatımı](#21-unixte-kabuk-programlama-shell-scripting-dilinin-temel-örneklerle-anlatımı)
   - [Shell (Kabuk) nedir?](#shell-kabuk-nedir)
   - [Kabuk Programları](#kabuk-programları)
@@ -230,41 +230,6 @@ else
     echo "Girilen sayı 100 den büyüktür."
 fi
 ```
-- [İşletim Sistemleri Projesi](#i̇şletim-sistemleri-projesi)
-- [21. Unixte kabuk programlama (shell scripting) dilinin temel örneklerle anlatımı](#21-unixte-kabuk-programlama-shell-scripting-dilinin-temel-örneklerle-anlatımı)
-  - [Shell (Kabuk) nedir?](#shell-kabuk-nedir)
-  - [Kabuk Programları](#kabuk-programları)
-    - [Çalıştırılabilir dosya](#çalıştırılabilir-dosya)
-    - [Shebang satırı](#shebang-satırı)
-    - [Yorum satırları](#yorum-satırları)
-  - [Değişkenler](#değişkenler)
-  - [Parametreler](#parametreler)
-    - [Argüman Parametresi](#argüman-parametresi)
-    - [Özel Karakter Parametresi](#özel-karakter-parametresi)
-    - [Aritmetik işlemler](#aritmetik-işlemler)
-    - [$( ) ve <() Operatörleri](#--ve--operatörleri)
-    - [Mantıksal Operatörler](#mantıksal-operatörler)
-    - [Aritmetik Karşılaştırma](#aritmetik-karşılaştırma)
-    - [Dizi (String) Karşılaştırma](#dizi-string-karşılaştırma)
-    - [Dosya Karşılaştırma](#dosya-karşılaştırma)
-  - [Akış kontrolü](#akış-kontrolü)
-    - [if-else-elif](#if-else-elif)
-    - [case](#case)
-    - [while-do Döngüsü](#while-do-döngüsü)
-    - [until-do Döngüsü](#until-do-döngüsü)
-  - [Fonksiyonlar](#fonksiyonlar)
-    - [Değişlenleri Geçerlilikleri](#değişlenleri-geçerlilikleri)
-    - [Geri Dönüş Değeri](#geri-dönüş-değeri)
-    - [Argüman Göndermek](#argüman-göndermek)
-  - [Ekler](#ekler)
-    - [date komutu](#date-komutu)
-    - [declare komutu](#declare-komutu)
-    - [echo komutu](#echo-komutu)
-    - [let komutu](#let-komutu)
-    - [man komutu](#man-komutu)
-    - [printf komutu](#printf-komutu)
-    - [read komutu](#read-komutu)
-    - [test komutu](#test-komutu)
 ### case 
 
     case anahtar in 
