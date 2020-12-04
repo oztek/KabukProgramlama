@@ -16,6 +16,14 @@
     - [case](#case)
     - [while-do Döngüsü](#while-do-döngüsü)
     - [for-do Döngüsü](#for-do-döngüsü)
+  - [Ekler](#ekler)
+    - [date komutu](#date-komutu)
+    - [declare komutu](#declare-komutu)
+    - [echo komutu](#echo-komutu)
+    - [let komutu](#let-komutu)
+    - [printf komutu](#printf-komutu)
+    - [read komutu](#read-komutu)
+    - [test komutu](#test-komutu-1)
   
 # İşletim Sistemleri Projesi
 # 21. Unixte kabuk programlama (shell scripting) dilinin temel örneklerle anlatımı
@@ -94,19 +102,20 @@ $ echo $carpim
 14
 ```
 ```bash
-$ typeset -i sonuc # sonuc isimli tam sayı değişkeni tanımlandı.
+$ declare -i sonuc # sonuc isimli tam sayı değişkeni tanımlandı.
 $ a=100; b=56 # aynı satırda iki komutu birbirinden ayırabilmek için ; kullanılır.
 $ sonuc = a*b
 $ echo $sonuc
+5600
 ```
 ### $( ) ve <() Operatörleri
 
-Bir komutun çıktısını kullanmak için $( ) size yardımcı olacaktır.
+Bir komutun çıktısını kullanmak için **$( )** size yardımcı olacaktır.
 ```bash
 $ echo "Bugün'ün tarihi $(date) dir."
 Bugün'ün tarihi Thu 03 Dec 2020 03:24:44 AM +03 dir.
 ```
-Bir komutun çıktısını geçiçi bir dosya yazıp bunu girdi olarak bir programa verme için <( ) kullanılır.
+Bir komutun çıktısını geçiçi bir dosya yazıp bunu girdi olarak bir programa verme için **<( )** kullanılır.
 
 ### Mantıksal Operatörler
 
@@ -129,19 +138,19 @@ Bir komutun çıktısını geçiçi bir dosya yazıp bunu girdi olarak bir progr
 |!=      |farklı diziler| Metin1 != Metin2 | Metin1 dizisi Metin2 dizisine eşit değilse |
 
 #### Dosya Karşılaştırma
-|Operatör|Anlamı        |Örneği    |Açıklaması|
-|:------:|:-------------|:--------:|:--------:|
-|-a      |dosya var      | $a -gt $b| a > b    |
-|-e      |dosya var      | $a -gt $b| a > b    |
-|-f      |dosya var      | $a -gt $b| a > b    |
-|-s      |dosya boş değil  | $a -lt $b| a < b    |
-|-r      |dosya okunabilir  | $a -ge $b| a >= b   |
-|-w      |dosya yazılabilir| $a -le $b| a <= b   |
-|-x      |çalıştırabilir dosya| $a -le $b| a <= b   |
-|-h      |sembolik bağlantı| $a -le $b| a <= b   |
-|-c      |karakter aygıt| $a -le $b| a <= b   |
-|-b      |blok aygıt| $a -le $b| a <= b   |
-|-nt     |Yeni(değiştirilme tarihi) dosya| Dosya1 -nt Dosya2 | Dosya1 Dosya2'den daha yeni
+|Operatör|Anlamı        |Örneği    |
+|:------:|:-------------|:--------:|
+|-a      |dosya var      | -a dosyaadı |
+|-e      |dosya var      | -e dosyaadı |
+|-f      |dosya var      | -f dosyaadı |
+|-s      |dosya boş değil  | -s dosyaadı | 
+|-r      |dosya okunabilir  | -r dosyaadı |
+|-w      |dosya yazılabilir|  -w dosyaadı |
+|-x      |çalıştırabilir dosya| -x dosyaadı | 
+|-h      |sembolik bağlantı| -h dosyaadı | 
+|-c      |karakter aygıt| -c dosyaadı | 
+|-b      |blok aygıt|  -b dosyaadı | 
+|-nt     |Yeni(değiştirilme tarihi) dosya| Dosya1 -nt Dosya2 |
  
  ## Akış kontrolü
 
@@ -184,3 +193,76 @@ echo " ders saatindedir."
 ### while-do Döngüsü
 
 ### for-do Döngüsü
+
+## Ekler
+
+### date komutu
+
+Tarih ve saati gösteren ve ayarlamanıza yarayan komuttur.
+```bash
+$ date
+Thu 03 Dec 2020 03:24:44 AM +03
+```
+### declare komutu
+
+Değişkenlerin değer ve özelliklerinin tanımlanması için kullanılır. typeset komutu declare komutunun takma adıdır.
+```bash
+declare -i degisken
+degisken = "3**3"
+echo $degisken
+```
+### echo komutu
+
+Argumanlarını standart çıkışa yazan bir programıdır.
+```bash
+$ echo Merhaba 
+```
+
+### let komutu
+Matematiksel ifadelerin hesaplanması için kullanılır. Bash küsüratlı sayıları desteklemediğin sadece tam sayılarla işlemler yapılır.
+```bash
+$ let "carpim=2*7"
+$ echo $carpim
+14
+```
+```bash
+
+### man komutu
+
+Belkide en çok kullanacağız komut olan **man** manual pages (kullanım sayflarına) ulaşmanızı sağlayan komuttur.
+```bash
+$ man echo
+```
+Çıkmak için **q** tuşuna basmayı unutmayın.
+
+### printf komutu
+
+C'deki kullanıma oldukça benzeyen biçimli çıktı komutudur.
+```bash
+print format [argumanlar ...]
+```
+Bir diziyi (string) yazdırmak için
+```bash
+$ printf "%s\n" hello
+hello
+```
+
+### read komutu
+
+Klavyeden bir giriş yapmak için kullanılır.
+```bash
+$ read DENEME
+Ali
+$ echo Merhaba $DENEME
+Merhaba Ali
+```
+
+### test komutu
+Bir şartı hesaplar. Eğer şart doğruya 0 diğer durumlarda ise 1 döndürür.
+```bash
+$ test 5 -lt 3
+$ echo $?
+1
+$ test 5 -lt 3 && echo "Hayır 5 3den küçük değil" || echo "Evet 5 3den küçük"
+Hayır 5 3de küçük
+```
