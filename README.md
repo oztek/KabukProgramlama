@@ -1,8 +1,16 @@
+# İşletim Sistemleri Projesi
+
+[Bu belgeye ve videoya ulaşabileceğiniz adres] (https://github.com/oztek/KabukProgramlama)
+
+
+![Erişim Yolu](images/Yol.png) 
+
 - [İşletim Sistemleri Projesi](#i̇şletim-sistemleri-projesi)
 - [21. Unixte kabuk programlama (shell scripting) dilinin temel örneklerle anlatımı](#21-unixte-kabuk-programlama-shell-scripting-dilinin-temel-örneklerle-anlatımı)
   - [Shell (Kabuk) nedir?](#shell-kabuk-nedir)
-  - [Test komutu](#test-komutu)
   - [Kabuk Programları](#kabuk-programları)
+    - [Çalıştırılabilir dosya](#çalıştırılabilir-dosya)
+    - [Shebang satırı](#shebang-satırı)
     - [Yorum satırları](#yorum-satırları)
   - [Değişkenler](#değişkenler)
   - [Parametreler](#parametreler)
@@ -11,9 +19,9 @@
     - [Aritmetik işlemler](#aritmetik-işlemler)
     - [$( ) ve <() Operatörleri](#--ve--operatörleri)
     - [Mantıksal Operatörler](#mantıksal-operatörler)
-      - [Aritmetik Karşılaştırma](#aritmetik-karşılaştırma)
-      - [Dizi (String) Karşılaştırma](#dizi-string-karşılaştırma)
-      - [Dosya Karşılaştırma](#dosya-karşılaştırma)
+    - [Aritmetik Karşılaştırma](#aritmetik-karşılaştırma)
+    - [Dizi (String) Karşılaştırma](#dizi-string-karşılaştırma)
+    - [Dosya Karşılaştırma](#dosya-karşılaştırma)
   - [Akış kontrolü](#akış-kontrolü)
     - [if-else-elif](#if-else-elif)
     - [case](#case)
@@ -28,33 +36,27 @@
     - [declare komutu](#declare-komutu)
     - [echo komutu](#echo-komutu)
     - [let komutu](#let-komutu)
+    - [man komutu](#man-komutu)
     - [printf komutu](#printf-komutu)
     - [read komutu](#read-komutu)
-    - [test komutu](#test-komutu-1)
+    - [test komutu](#test-komutu)
   
-# İşletim Sistemleri Projesi
+
 # 21. Unixte kabuk programlama (shell scripting) dilinin temel örneklerle anlatımı
 
 ## Shell (Kabuk) nedir?
 
 Basitçe tanımlamak gerekirse komutları klavyeden alan işletim sistemiyle haberleşmemizi sağlayan bir programdır. Eskiden bilgisayarlarla etkileşime girmek için şimdiki gibi grafik kullanıcı arayüzleri (graphical user interface GUI) olmadığından shell gibi komut satırı arayüzleri (command line interface CLI) kullanılıyordu. Hala pek çok işletim sistemini en etkin şekilde kullanmak için kabukla etkileşmek gereklidir. Hatta bu verimi fark eden Microsoft firması da işletim sisteminde yakın zamanda PowerShell kabuğunu geliştirmiştir.
 
-Pek çok Linux çekirdeği kullanan işletim sistemlerinde Steve Bourne tarafından yazılmış olan bash programı shell olarak kullanır. Bu program aslında Unix sistemindeki sh shell programının geliştirilmiş halidir.
+Pek çok Linux çekirdeği kullanan işletim sistemlerinde Steve Bourne tarafından yazılmış olan bash (Bourne Again SHell) programı shell olarak kullanır. Bu program aslında Unix sistemindeki sh shell programının geliştirilmiş halidir.
 
 Script bir dosya içindeki sıralı komutlara denir.
 
-## Test komutu
-```bash
-test expr
-```
-expr şart ifadesini değerlendirip 0 (Doğru) veya 1 Yanlış durumu döndürür. 
-
-Eğer [ biçimi kullanılacaksa son arguman ] olmalıdır.
-
-
-
 ## Kabuk Programları
-Kabuk programı aslında bir veya daha fazla komutu barındıran çalışabilir metin bazlı dosyalardır. Herhangi bir zorunluluk olmamasına karşılık sh uzantılı olması adettendir. Bir dosyanın çalışabilir yapılması için
+Kabuk programı aslında bir veya daha fazla komutu barındıran çalışabilir metin bazlı dosyalardır. Herhangi bir zorunluluk olmamasına karşılık sh uzantılı olması adettendir. 
+
+### Çalıştırılabilir dosya
+Bir dosyanın çalışabilir yapılması için
 
 ```bash
 $ chmod +x dosya_ismi
@@ -63,10 +65,9 @@ Dosyayı çalıştırmak içinse
 ```bash
 $ ./dosya_ismi
 ```
-### Yorum satırları
-Kabuk programlarına yorum eklenmek istenirse # kullanılır. İlgili satırda # simgeden sonra gelen komutlar yorum olarak değerlendirilir ve göz ardı edilirler.
+### Shebang satırı
+Pek çok kabuk programı olduğundan yazdığınız kabuk programını belirtmeniz gerebilir. Bunun için Shebang olarak ifade edilen #! karaterlerinden sonra kullanılacak kabuk programının yolu vermek gereklidir.
 
-Pek çok kabuk programı olduğundan yazdığınız kabuk programını belirtmeniz gerebilir. Bunun için Shebang olarak ifade edilen #! karaterlerinden sonra kullanılacak kabuk programının yolu vermek gereklidir. 
 ```bash
 which bash
 $ /bin/bash
@@ -76,6 +77,9 @@ komutu ile işletim sisteminide bash programının tam yolunu öğrenip Shebang 
 #!/bin/bash
 ```
 yazarak bash kabuğunu kullandığımızı belirtebiliriz. Eğer unutulursa da belki programını çalışabilir. Herhangi bir hatayı en aza ingirdegemek için yazılması gereklidir.
+
+### Yorum satırları
+Kabuk programlarına yorum eklenmek istenirse # kullanılır. İlgili satırda # simgeden sonra gelen komutlar yorum olarak değerlendirilir ve göz ardı edilirler.
 
 ## Değişkenler
 
@@ -145,9 +149,27 @@ Bugün'ün tarihi Thu 03 Dec 2020 03:24:44 AM +03 dir.
 ```
 Bir komutun çıktısını geçiçi bir dosya yazıp bunu girdi olarak bir programa verme için **<( )** kullanılır.
 
+```bash
+$ more <(ls ~/)
+```
+Çıktısı
+
+    dosya1
+    dosya2
+    dosya3
+
+Burada **more** komutu bir çıktının sayfa sayfa gösterilmesini sağlar. **~** kullanıcı dizinini ifade eder. **ls** komutu ise ilgili dizindeki dosyaları listeler.
+
+
 ### Mantıksal Operatörler
 
-#### Aritmetik Karşılaştırma
+|Operatör|Anlamı     |Örneği    |
+|:------:|:----------|:--------:|
+|-a     |ve      | şart1 -a şart2 |
+|-o     |veya      | şart1 -o şart2|
+|!     |değil | ! şart| 
+
+### Aritmetik Karşılaştırma
 |Operatör|Anlamı     |Örneği    |Açıklaması|
 |:------:|:----------|:--------:|:--------:|
 |-gt     |büyük      | $a -gt $b| a > b    |
@@ -157,7 +179,7 @@ Bir komutun çıktısını geçiçi bir dosya yazıp bunu girdi olarak bir progr
 |-eq     |eşit       | $a -eq $b| a == b   |
 |-ne     |eşit değil | $a -ne $b| a != b   |
  
-#### Dizi (String) Karşılaştırma
+### Dizi (String) Karşılaştırma
 |Operatör|Anlamı        |Örneği    |Açıklaması|
 |:------:|:-------------|:--------:|:--------|
 |-z      |boş dizi      | -z Metin | Metin dizisinin uzunluğu sıfır ise    |
@@ -165,7 +187,7 @@ Bir komutun çıktısını geçiçi bir dosya yazıp bunu girdi olarak bir progr
 |=       |eşit diziler  | Metin1 = Metin2 | Metin1 dizisi Metin2 dizisine eşitse   |
 |!=      |farklı diziler| Metin1 != Metin2 | Metin1 dizisi Metin2 dizisine eşit değilse |
 
-#### Dosya Karşılaştırma
+### Dosya Karşılaştırma
 |Operatör|Anlamı        |Örneği    |
 |:------:|:-------------|:--------:|
 |-a      |dosya var      | -a dosyaadı |
@@ -197,6 +219,52 @@ Bir komutun çıktısını geçiçi bir dosya yazıp bunu girdi olarak bir progr
         komut 6
     fi
 
+```bash
+read sayi
+if [ sayi -lt 100 ]
+then 
+    echo "Girilen sayi 100 den küçüktür."
+elif [ sayi -lt 0 ]
+    echo "Girilen sayı negatiftir."
+else
+    echo "Girilen sayı 100 den büyüktür."
+fi
+```
+- [İşletim Sistemleri Projesi](#i̇şletim-sistemleri-projesi)
+- [21. Unixte kabuk programlama (shell scripting) dilinin temel örneklerle anlatımı](#21-unixte-kabuk-programlama-shell-scripting-dilinin-temel-örneklerle-anlatımı)
+  - [Shell (Kabuk) nedir?](#shell-kabuk-nedir)
+  - [Kabuk Programları](#kabuk-programları)
+    - [Çalıştırılabilir dosya](#çalıştırılabilir-dosya)
+    - [Shebang satırı](#shebang-satırı)
+    - [Yorum satırları](#yorum-satırları)
+  - [Değişkenler](#değişkenler)
+  - [Parametreler](#parametreler)
+    - [Argüman Parametresi](#argüman-parametresi)
+    - [Özel Karakter Parametresi](#özel-karakter-parametresi)
+    - [Aritmetik işlemler](#aritmetik-işlemler)
+    - [$( ) ve <() Operatörleri](#--ve--operatörleri)
+    - [Mantıksal Operatörler](#mantıksal-operatörler)
+    - [Aritmetik Karşılaştırma](#aritmetik-karşılaştırma)
+    - [Dizi (String) Karşılaştırma](#dizi-string-karşılaştırma)
+    - [Dosya Karşılaştırma](#dosya-karşılaştırma)
+  - [Akış kontrolü](#akış-kontrolü)
+    - [if-else-elif](#if-else-elif)
+    - [case](#case)
+    - [while-do Döngüsü](#while-do-döngüsü)
+    - [until-do Döngüsü](#until-do-döngüsü)
+  - [Fonksiyonlar](#fonksiyonlar)
+    - [Değişlenleri Geçerlilikleri](#değişlenleri-geçerlilikleri)
+    - [Geri Dönüş Değeri](#geri-dönüş-değeri)
+    - [Argüman Göndermek](#argüman-göndermek)
+  - [Ekler](#ekler)
+    - [date komutu](#date-komutu)
+    - [declare komutu](#declare-komutu)
+    - [echo komutu](#echo-komutu)
+    - [let komutu](#let-komutu)
+    - [man komutu](#man-komutu)
+    - [printf komutu](#printf-komutu)
+    - [read komutu](#read-komutu)
+    - [test komutu](#test-komutu)
 ### case 
 
     case anahtar in 
@@ -289,8 +357,44 @@ echo "Fonksiyon çağrıldıktan sonraki degisken1: $degisken1, degisken2: $degi
 ```
 
 ### Geri Dönüş Değeri
+```bash
+fonksiyon () {
+    return 10
+}
+
+fonksiyon
+echo $?
+```
+veya
+
+```bash
+fonksiyon () {
+    sonuclar="1 2 3 4"
+}
+fonksiyon
+echo $sonuclar
+```
+Çıktısı
+
+    1 2 3 4
 
 ### Argüman Göndermek
+
+Fonksiyon isminden sonra gelen argümanlar için sırasıyla $1, $2, ... , $(10), ... $n
+
+$# kaç tana argüman gönderildiğinin sayısını göstermektedir.
+
+```bash
+selam () {
+    echo "Merhaba $1"
+}
+
+selam "Hakan"
+```
+
+Çıktısı
+
+    Merhaba Hakan
 
 ## Ekler
 
@@ -323,7 +427,6 @@ $ let "carpim=2*7"
 $ echo $carpim
 14
 ```
-```bash
 
 ### man komutu
 
